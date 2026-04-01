@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev.to Automation — Dashboard</title>
+  <meta name="description"
+    content="Monitor Dev.to automation executions, AI-generated articles, and self-learning insights." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon"></span>
+        <span class="brand-name">Dev.to Automation</span>
+        <span class="brand-tag">Dashboard</span>
+      </div>
+      <div class="header-actions">
+        <span class="last-refresh" id="lastRefresh">—</span>
+        <button class="btn btn-secondary" id="btnRefresh">↻ Refresh</button>
+        <button class="btn btn-primary" id="btnRunNow">▶ Run Now</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Stats Row -->
+    <section class="stats-row" id="statsRow">
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--total">📋</div>
+        <div>
+          <div class="stat-value" id="statTotal">—</div>
+          <div class="stat-label">Total Runs</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--success">✅</div>
+        <div>
+          <div class="stat-value" id="statSuccess">—</div>
+          <div class="stat-label">Successful</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--failed">❌</div>
+        <div>
+          <div class="stat-value" id="statFailed">—</div>
+          <div class="stat-label">Failed</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--skipped">⏭️</div>
+        <div>
+          <div class="stat-value" id="statSkipped">—</div>
+          <div class="stat-label">Skipped</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--insights">🧠</div>
+        <div>
+          <div class="stat-value" id="statInsights">—</div>
+          <div class="stat-label">AI Insights</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content-grid">
+
+      <!-- Executions Table -->
+      <section class="card executions-card">
+        <div class="card-header">
+          <h2 class="card-title">Execution History</h2>
+          <span class="card-subtitle" id="execCount">Loading...</span>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="execTable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Topic</th>
+                <th>Content Preview</th>
+                <th>Dev.to Link</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody id="execBody">
+              <tr>
+                <td colspan="6" class="empty">Loading executions...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- AI Insights Panel -->
+      <aside class="card insights-card">
+        <div class="card-header">
+          <h2 class="card-title">🧠 AI Insights</h2>
+          <span class="card-subtitle">Learned writing principles</span>
+        </div>
+        <div class="insights-intro">
+          The AI reflects on each successful post and extracts a writing principle to improve future content.
+        </div>
+        <ul class="insights-list" id="insightsList">
+          <li class="insight-item insight-item--loading">Loading insights...</li>
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- Content Preview Modal -->
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Article Content</h3>
+          <button class="modal-close" id="modalClose">✕</button>
+        </div>
+        <div class="modal-body">
+          <pre id="modalContent"></pre>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span>Dev.to Automation v2.0 · Self-learning AI · Auto-refresh every 30s</span>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
